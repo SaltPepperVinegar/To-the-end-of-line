@@ -1,25 +1,23 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Bullet : MonoBehaviour
 {
-    public float speed = 10f;
-    public float lifetime = 2f;
+    public float speed = 10f; // Bullet speed
+    private Vector2 moveDirection;
 
-    void Start()
-    {
-        // Destroy the bullet after a certain time to prevent it from existing forever
-        Destroy(gameObject, lifetime);
+    private Rigidbody2D rb;
+    // Set the direction for the bullet
+    public void Start(){
+        moveDirection = transform.up;
+        rb = GetComponent<Rigidbody2D>();
+        rb.velocity = transform.right*speed;
+        Debug.Log(rb.velocity);
+        Destroy(gameObject, 10f); // Destroy after 3 seconds
+
     }
 
-    void Update()
-    {
-        // Move the bullet forward
-        transform.Translate(Vector2.up * speed * Time.deltaTime);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        // Handle collision logic here
-        Destroy(gameObject); // Destroy the bullet on hit
+    void OnCollisionEnter2D() {
+        Destroy(gameObject);
     }
 }

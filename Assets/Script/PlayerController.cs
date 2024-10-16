@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -15,9 +13,15 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 input;
 
+
+    private Animator animator;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        animator.SetBool("IsMoving",isMoving);
+
     }
 
     void Update()
@@ -29,7 +33,6 @@ public class PlayerController : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-
         if(!isMoving)
         {
             input.x = Input.GetAxisRaw("Horizontal");
@@ -37,31 +40,54 @@ public class PlayerController : MonoBehaviour
             if (input != Vector2.zero)
             {
                 var targetPos = transform.position;
-                targetPos.x += input.x*0.1f;
-                targetPos.y += input.y*0.1f;
+                targetPos.x += input.x*unitMovement;
+                targetPos.y += input.y*unitMovement;
         
 
                 StartCoroutine(Move(targetPos));
             }
         }
-            if (Input.GetMouseButtonDown(0))
-        {
-            Shoot();
+            if (GetComponent<WeaponScroll>().weaponType <3){
+                if (Input.GetMouseButtonDown(0))
+                {        
+                    animator.SetTrigger("ShootTrigger");
+                    Shoot();
+                }
+                if (Input.GetKeyDown(KeyCode.R))
+                {
+                    animator.SetTrigger("ReloadTrigger");
+                    Reload();
+                }
+
         }
+        if (Input.GetMouseButtonDown(1)){
+            animator.SetTrigger("MeleeTrigger");
+            Melee();
+
+        }
+        animator.SetBool("IsMoving",isMoving);
+
 
     }
     void Shoot()
     {
-        // Instantiate bullet at the fire point's position and rotation
+        // Instantiate the bullet at the fire point position with the same rotation as the fire point
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        bullet.transform.up = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - firePoint.position).normalized; // Make bullet face mouse position
-        bullet.GetComponent<Rigidbody2D>().isKinematic = false; // Enable physics on the bullet
+
     }
 
+    void Reload()
+    {
+
+    }
+
+    void Melee()
+    {
+
+    }
     IEnumerator Move(Vector3 targetPos)
     {
         isMoving = true;
-
         while ((targetPos-transform.position).sqrMagnitude > Mathf.Epsilon)
         {
             transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
