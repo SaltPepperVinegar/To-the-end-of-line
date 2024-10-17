@@ -13,9 +13,13 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 input;
 
+    public LayerMask solidObjectsLayer;
 
     private Animator animator;
 
+    [SerializeField] HealthBar healthbar;
+
+    private Vector3 targetPos;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -26,6 +30,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {   
+        
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         
         Vector2 direction = mousePosition - transform.position;
@@ -33,21 +38,17 @@ public class PlayerController : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-        if(!isMoving)
+        input.x = Input.GetAxisRaw("Horizontal");
+        input.y = Input.GetAxisRaw("Vertical");
+        rb.velocity = input.normalized*moveSpeed;
+        if (input != Vector2.zero)
         {
-            input.x = Input.GetAxisRaw("Horizontal");
-            input.y = Input.GetAxisRaw("Vertical");
-            if (input != Vector2.zero)
-            {
-                var targetPos = transform.position;
-                targetPos.x += input.x*unitMovement;
-                targetPos.y += input.y*unitMovement;
-        
-
-                StartCoroutine(Move(targetPos));
-            }
+            isMoving = true;
+        } else{
+            isMoving = false;
         }
-            if (GetComponent<WeaponScroll>().weaponType <3){
+            
+        if (GetComponent<WeaponScroll>().weaponType <3){
                 if (Input.GetMouseButtonDown(0))
                 {        
                     animator.SetTrigger("ShootTrigger");
@@ -69,6 +70,7 @@ public class PlayerController : MonoBehaviour
 
 
     }
+    
     void Shoot()
     {
         // Instantiate the bullet at the fire point position with the same rotation as the fire point
@@ -88,12 +90,13 @@ public class PlayerController : MonoBehaviour
     IEnumerator Move(Vector3 targetPos)
     {
         isMoving = true;
-        while ((targetPos-transform.position).sqrMagnitude > Mathf.Epsilon)
+        while ((targetPos-transform.position).sqrMagnitude > 0.001f)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
+            rb.velocity = (targetPos-transform.position).normalized*moveSpeed;
             yield return null;
         }
         transform.position = targetPos;
+        rb.velocity = Vector2.zero;
 
         isMoving = false;
 

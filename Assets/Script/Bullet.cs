@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
     public float speed = 10f; // Bullet speed
     private Vector2 moveDirection;
 
+    public float damage =1f;
     private Rigidbody2D rb;
     // Set the direction for the bullet
     public void Start(){
@@ -13,11 +14,14 @@ public class Bullet : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = transform.right*speed;
         Debug.Log(rb.velocity);
-        Destroy(gameObject, 10f); // Destroy after 3 seconds
+        Destroy(gameObject, 10f);
 
     }
-
-    void OnCollisionEnter2D() {
+    void OnCollisionEnter2D(Collision2D collision) {
         Destroy(gameObject);
+        if (collision.gameObject.tag == "Enemy"){
+            collision.gameObject.GetComponent<EnemyHealth>().Damage(damage);
+        }
+
     }
 }
