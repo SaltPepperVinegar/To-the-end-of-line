@@ -21,7 +21,6 @@ public class WeaponScroll : MonoBehaviour
         // Scroll up (positive value)
         if (scrollInput > 0f)
         {   
-            Debug.Log(scrollInput);
 
             weaponType++ ;
             if (weaponType > maxWeaponType)

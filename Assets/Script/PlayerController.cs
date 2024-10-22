@@ -20,14 +20,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] HealthBar healthbar;
 
     private Vector3 targetPos;
+
+    private WeaponScroll weaponControl;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         animator.SetBool("IsMoving",isMoving);
-
+        weaponControl = GetComponent<WeaponScroll>();
     }
-
+    
     void Update()
     {   
         
@@ -48,19 +50,42 @@ public class PlayerController : MonoBehaviour
             isMoving = false;
         }
             
-        if (GetComponent<WeaponScroll>().weaponType <3){
-                if (Input.GetMouseButtonDown(0))
-                {        
-                    animator.SetTrigger("ShootTrigger");
-                    Shoot();
-                }
-                if (Input.GetKeyDown(KeyCode.R))
-                {
-                    animator.SetTrigger("ReloadTrigger");
-                    Reload();
-                }
+        switch (weaponControl.weaponType)
+            {
+                case 0:
+                    Debug.Log("weapon type 1");
+                    if (Input.GetMouseButtonDown(0))
+                    {        
+                        animator.SetTrigger("ShootTrigger");
+                        Shoot();
+                    }
+                    break;
+                case 1:
+                    if (Input.GetMouseButtonDown(0))
+                    {        
+                        animator.SetTrigger("ShootTrigger");
+                        Shoot();
+                    }
+                    break;
+                case 2:
+                    if (Input.GetMouseButtonDown(0))
+                    {        
+                        animator.SetTrigger("ShootTrigger");
+                        Shoot();
+                    }
+                    break;
+                default :
+                    break;
 
-        }
+            }
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                animator.SetTrigger("ReloadTrigger");
+                Reload();
+            }
+
+        
+
         if (Input.GetMouseButtonDown(1)){
             animator.SetTrigger("MeleeTrigger");
             Melee();
