@@ -21,13 +21,13 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 targetPos;
 
-    private WeaponScroll weaponControl;
+    private WeaponControl weaponControl;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         animator.SetBool("IsMoving",isMoving);
-        weaponControl = GetComponent<WeaponScroll>();
+        weaponControl = GetComponent<WeaponControl>();
     }
     
     void Update()
@@ -50,39 +50,17 @@ public class PlayerController : MonoBehaviour
             isMoving = false;
         }
             
-        switch (weaponControl.weaponType)
-            {
-                case 0:
-                    Debug.Log("weapon type 1");
-                    if (Input.GetMouseButtonDown(0))
-                    {        
-                        animator.SetTrigger("ShootTrigger");
-                        Shoot();
-                    }
-                    break;
-                case 1:
-                    if (Input.GetMouseButtonDown(0))
-                    {        
-                        animator.SetTrigger("ShootTrigger");
-                        Shoot();
-                    }
-                    break;
-                case 2:
-                    if (Input.GetMouseButtonDown(0))
-                    {        
-                        animator.SetTrigger("ShootTrigger");
-                        Shoot();
-                    }
-                    break;
-                default :
-                    break;
-
-            }
+        if(weaponControl.weaponType <3){
             if (Input.GetKeyDown(KeyCode.R))
-            {
+            {   
                 animator.SetTrigger("ReloadTrigger");
-                Reload();
+            }   
+            if (Input.GetMouseButtonDown(0))
+            {        
+                animator.SetTrigger("ShootTrigger");
             }
+
+        }
 
         
 
@@ -91,23 +69,30 @@ public class PlayerController : MonoBehaviour
             Melee();
 
         }
+        
         animator.SetBool("IsMoving",isMoving);
 
 
     }
     
-    void Shoot()
+    public void ShootHandGun()
     {
         // Instantiate the bullet at the fire point position with the same rotation as the fire point
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-
+        weaponControl.bulletShooted(1);
     }
-
-    void Reload()
+    public void ShootRifle()
     {
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        weaponControl.bulletShooted(1);
 
     }
+    public void ShootShotGun()
+    {
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        weaponControl.bulletShooted(1);
 
+    }
     void Melee()
     {
 
