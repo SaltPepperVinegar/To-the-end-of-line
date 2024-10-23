@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 targetPos;
 
+    public GameObject muzzleFlash;
     private WeaponControl weaponControl;
     private void Start()
     {
@@ -28,6 +30,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         animator.SetBool("IsMoving",isMoving);
         weaponControl = GetComponent<WeaponControl>();
+        muzzleFlash.GetComponent<SpriteRenderer>().enabled =false;
     }
     
     void Update()
@@ -55,9 +58,29 @@ public class PlayerController : MonoBehaviour
             {   
                 animator.SetTrigger("ReloadTrigger");
             }   
-            if (Input.GetMouseButtonDown(0))
-            {        
-                animator.SetTrigger("ShootTrigger");
+            switch (weaponControl.weaponType){
+                case 0: 
+                case 1:
+                    if (Input.GetMouseButton(0)  )
+                    {   
+                        if(weaponControl.checkAmmunition()){
+                            animator.SetTrigger("ShootTrigger");
+                        } else if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Reload")){
+                            animator.SetTrigger("ReloadTrigger");
+                        }
+                    }
+                    break;
+                default :
+                    if (Input.GetMouseButtonDown(0)  )
+                    {   
+                        if(weaponControl.checkAmmunition()){
+                            animator.SetTrigger("ShootTrigger");
+                        } else if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Reload")){
+                            animator.SetTrigger("ReloadTrigger");
+                        }
+                    }
+                break;
+                    
             }
 
         }
@@ -76,22 +99,48 @@ public class PlayerController : MonoBehaviour
     }
     
     public void ShootHandGun()
-    {
-        // Instantiate the bullet at the fire point position with the same rotation as the fire point
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        weaponControl.bulletShooted(1);
+    {   
+        if ( weaponControl.checkAmmunition())
+        {// Instantiate the bullet at the fire point position with the same rotation as the fire point
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            weaponControl.bulletShooted(1);
+            StartCoroutine(flash());
+
+        }
     }
     public void ShootRifle()
     {
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        weaponControl.bulletShooted(1);
+        if ( weaponControl.checkAmmunition())
+        {// Instantiate the bullet at the fire point position with the same rotation as the fire point
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            weaponControl.bulletShooted(1);
+            StartCoroutine(flash());
 
+        }
     }
     public void ShootShotGun()
     {
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+    if (weaponControl.checkAmmunition())
+    {
+        int bulletCount = 5; // Number of bullets in the spread
+        float spreadAngle = 20f; // Total angle for the spread (e.g., 30 degrees)
+        StartCoroutine(flash());
+        for (int i = 0; i < bulletCount; i++)
+        {
+            // Calculate the angle for each bullet on the z-axis (for 2D top-down)
+            float angleOffset = (i - (bulletCount - 1) / 2f) * (spreadAngle / (bulletCount - 1));
+
+            // Create a rotation for the bullet with the calculated offset on the z-axis
+            Quaternion bulletRotation = firePoint.rotation * Quaternion.Euler(0, 0, angleOffset);
+            
+            // Instantiate the bullet at the fire point position with the calculated rotation
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, bulletRotation);  
+            bullet.GetComponent<Bullet>().damage = 0.5f;
+            // Register that a bullet has been shot
+        }
         weaponControl.bulletShooted(1);
 
+    }
     }
     void Melee()
     {
@@ -109,6 +158,13 @@ public class PlayerController : MonoBehaviour
         rb.velocity = Vector2.zero;
 
         isMoving = false;
+
+    }
+
+    IEnumerator flash(){
+        muzzleFlash.GetComponent<SpriteRenderer>().enabled =true;
+        yield return new WaitForSeconds(0.05f);
+        muzzleFlash.GetComponent<SpriteRenderer>().enabled =false;
 
     }
 }

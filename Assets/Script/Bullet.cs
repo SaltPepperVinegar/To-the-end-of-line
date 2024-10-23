@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 public class Bullet : MonoBehaviour
 {
-    public float speed = 10f; // Bullet speed
+    public float speed = 50f; // Bullet speed
     private Vector2 moveDirection;
 
     public float damage =1f;

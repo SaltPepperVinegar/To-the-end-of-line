@@ -1,10 +1,15 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+using System;
 
 public class WeaponControl : MonoBehaviour
 {
     public int weaponType = 0;   // Starting weapon type
     public int maxWeaponType = 4; // Maximum weapon type
     public int minWeaponType = 0; // Minimum weapon type
+
+    [SerializeField] private TextMeshProUGUI AmmoStates;
 
     public int[] maxWeaponAmmo;
 
@@ -15,7 +20,8 @@ public class WeaponControl : MonoBehaviour
     private void Start(){
         animator = GetComponent<Animator>();
         animator.SetFloat("weaponType",weaponType);
-        currentWeaponAmmo = maxWeaponAmmo;
+        currentWeaponAmmo = new int[3];
+        Array.Copy(maxWeaponAmmo, currentWeaponAmmo,3);
     }
 
 
@@ -23,11 +29,16 @@ public class WeaponControl : MonoBehaviour
         currentWeaponAmmo[weaponType] -= num;
     }
     public bool checkAmmunition(){
-        return currentWeaponAmmo[weaponType]<= 0 ;
+        return currentWeaponAmmo[weaponType] > 0 ;
     }
 
     void Update()
-    {   
+    {   if (weaponType <3){
+            AmmoStates.text = "AMMO "+ currentWeaponAmmo[weaponType];
+        } else{
+            AmmoStates.text = "AMMO ";
+        }
+
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")||animator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
         {
         
@@ -62,8 +73,9 @@ public class WeaponControl : MonoBehaviour
         }
     }
 
-    void Reload()
-    {
+    public void Reload()
+    {   
+        Debug.Log("reload");
         currentWeaponAmmo[weaponType] = maxWeaponAmmo[weaponType];
     }
 
