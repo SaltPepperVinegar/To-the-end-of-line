@@ -42,6 +42,7 @@ public class Enemy : MonoBehaviour , IEnemyMoveable,ITriggerCheckable
     
 
     public void Update(){
+
         StateMachine.CurrentEnemyState.FrameUpdate();
         if (RB.velocity == Vector2.zero){
             isMoving = false;

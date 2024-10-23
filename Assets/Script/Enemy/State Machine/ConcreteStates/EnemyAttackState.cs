@@ -10,7 +10,7 @@ public class EnemyAttackState : EnemyState
     }
     public override void EnterState() 
     {
-        Debug.Log("attack!");
+        //Debug.Log("attack!");
 
     }
 
