@@ -24,6 +24,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     public bool thisItemSelected;
 
     private InventoryManager inventoryManager;
+    
 
     //--- Item Description slot 
     public Image itemDescriptionImage;
@@ -35,7 +36,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     {   
         inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
     }
-    public int AddItem(string itemName, int quantity, Sprite sprite, String itemDescription)
+    public int AddItem(string itemName, int quantity, Sprite sprite, String itemDescription, int maxNumberItems)
     {   //Check to see if the slot iss already full 
         if (isFull)
             return quantity;
@@ -43,9 +44,9 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
         this.itemName = itemName;
         this.itemSprite = sprite;
         this.itemDescription = itemDescription;
-        
-        itemImage.sprite = itemSprite;
+        this.maxNumberItems = maxNumberItems;
 
+        itemImage.sprite = itemSprite;
         this.quantity += quantity;
         if(this.quantity > maxNumberItems){
             quantityText.text = maxNumberItems.ToString();
@@ -62,10 +63,27 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
             return 0;
         }
     }
+    public int removeItem(int quantity){
+        isFull = false;
+        if( this.quantity>= quantity)
+        {
+            this.quantity -= quantity;
+            quantityText.text = this.quantity.ToString();
+            if(this.quantity <=0)
+                EmptySlot();
+            return 0;
+        }
+        else{
+            int leftOver = quantity - this.quantity;
+            this.quantity = 0;
+            quantityText.text = this.quantity.ToString();
+            EmptySlot();
+            return leftOver;
+        }
+    }
 
     public void OnPointerClick(PointerEventData eventData)
     {   
-        Debug.Log("clicked");
 
         if(eventData.button == PointerEventData.InputButton.Left)
         {   
@@ -85,11 +103,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
             bool usable = inventoryManager.UseItem(itemName);
             if(usable)
             {
-                this.quantity -= 1;
-                quantityText.text = this.quantity.ToString();
-                if(this.quantity <=0)
-                    EmptySlot();
-
+                removeItem(1);
             }
         } else{
             inventoryManager.DeselectAllSlots();
@@ -112,6 +126,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
         ItemDescriptionText.text = "";
         itemDescriptionImage.sprite = emptySprite;
         itemName = "";
+        quantity = 0;
     }
 
     private void OnRightClick()
@@ -119,21 +134,8 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
         Vector3 position = GameObject.FindWithTag("Player").transform.position +new Vector3(3,0,0);
 
         inventoryManager.instantiateItem((itemName),1,position);
-        /*
-        Item newItem = itemToDrop.AddComponent<Item>();
-        newItem.quantity = 1;
-        newItem.itemName = itemName;
-        newItem.sprite = itemSprite;
-        newItem.itemDescription = itemDescription;
-        */
-        //create and modify the SR
-
-        this.quantity -= 1;
-        quantityText.text = this.quantity.ToString();
-        if(this.quantity <=0)
-            EmptySlot();
+        removeItem(1);
 
     }
-
 
 }

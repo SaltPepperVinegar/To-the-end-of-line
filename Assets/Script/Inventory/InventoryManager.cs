@@ -53,19 +53,42 @@ public class InventoryManager : MonoBehaviour
         }
         return false;
     }
-    public int AddItem(string itemName, int quantity, Sprite sprite, String itemDescription)
+    public int DeleteItem(string itemName,int quantity)
+    {
+        for(int i =itemSlot.Length-1; i>=0;i--)
+        {
+            if(itemSlot[i].itemName == itemName)
+            {
+                int leftOverItems = itemSlot[i].removeItem(quantity);
+                if (leftOverItems>0){
+                    leftOverItems = DeleteItem(itemName, leftOverItems);
+                }
+                return leftOverItems;
+            }
+        }
+        return quantity;
+    }
+
+
+    public int AddItem(string itemName, int quantity, Sprite sprite, String itemDescription, int maxNumberItems)
     {
         for (int i =0; i < itemSlot.Length; i++)
         {
-            if(itemSlot[i].isFull == false || itemSlot[i].name == name || itemSlot[i].quantity == 0 )
+            if(itemSlot[i].isFull == false && itemSlot[i].itemName == itemName )
             {
-                int leftOverItems = itemSlot[i].AddItem(itemName, quantity, sprite, itemDescription);
+                int leftOverItems = itemSlot[i].AddItem(itemName, quantity, sprite, itemDescription,maxNumberItems);
                 if (leftOverItems >0){
-                    leftOverItems = AddItem(itemName, leftOverItems, sprite, itemDescription);
+                    leftOverItems = AddItem(itemName, leftOverItems, sprite, itemDescription,maxNumberItems);
                 }
                 return leftOverItems;
 
-            } 
+            }  else if (itemSlot[i].quantity == 0 ) {
+                int leftOverItems = itemSlot[i].AddItem(itemName, quantity, sprite, itemDescription,maxNumberItems);
+                if (leftOverItems >0){
+                    leftOverItems = AddItem(itemName, leftOverItems, sprite, itemDescription,maxNumberItems);
+                }
+                return leftOverItems;
+            }
 
         }
         return quantity;
@@ -81,7 +104,8 @@ public class InventoryManager : MonoBehaviour
     }
 
     public void instantiateItem(string itemName, int quantity,Vector3 position)
-    {
+    {   
+        Debug.Log("creating "+ itemName);
         foreach(GameObject gameObject in itemInstances)
         {
             if(gameObject.GetComponent<Item>().itemName == itemName){
@@ -89,6 +113,8 @@ public class InventoryManager : MonoBehaviour
                 newItemInstance.transform.position = position;
                 newItemInstance.GetComponent<Item>().quantity = quantity; 
                 newItemInstance.SetActive(true);
+                Debug.Log(itemName + "Drop at " + position +"with " +quantity); 
+
             }
         }
 

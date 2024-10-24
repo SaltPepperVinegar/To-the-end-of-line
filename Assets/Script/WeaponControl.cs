@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using UnityEditor;
 
 public class WeaponControl : MonoBehaviour
 {
@@ -11,30 +12,48 @@ public class WeaponControl : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI AmmoStates;
 
-    public int[] maxWeaponAmmo;
+    public int[] reloadWeaponAmmo;
 
+    public int[] totalWeaponAmmo;
     private int[] currentWeaponAmmo;  
 
     private Animator animator;
-
+    private InventoryManager inventoryManager;
     private void Start(){
         animator = GetComponent<Animator>();
         animator.SetFloat("weaponType",weaponType);
         currentWeaponAmmo = new int[3];
-        Array.Copy(maxWeaponAmmo, currentWeaponAmmo,3);
+        //Array.Copy(reloadWeaponAmmo, currentWeaponAmmo,3);
+        for (int i=0;i<3 ;i++){
+            currentWeaponAmmo[i] = 0;
+        }
+        
+        inventoryManager = GetComponentInChildren<InventoryManager>();
     }
 
 
     public void bulletShooted(int num){
         currentWeaponAmmo[weaponType] -= num;
+        switch(weaponType){
+            case 0:
+                inventoryManager.DeleteItem("RiffleAmmo", num);
+                break;
+            case 1:
+                inventoryManager.DeleteItem("ShotGunAmmo", num);
+                break;
+            case 2:
+                inventoryManager.DeleteItem("PistolAmmo", num);
+                break;
+        }
     }
+
     public bool checkAmmunition(){
         return currentWeaponAmmo[weaponType] > 0 ;
     }
 
     void Update()
     {   if (weaponType <3){
-            AmmoStates.text = "AMMO "+ currentWeaponAmmo[weaponType];
+            AmmoStates.text = "AMMO "+ currentWeaponAmmo[weaponType] + "/" + totalWeaponAmmo[weaponType];
         } else{
             AmmoStates.text = "AMMO ";
         }
@@ -76,7 +95,20 @@ public class WeaponControl : MonoBehaviour
     public void Reload()
     {   
         Debug.Log("reload");
-        currentWeaponAmmo[weaponType] = maxWeaponAmmo[weaponType];
+        int needToReload = reloadWeaponAmmo[weaponType] -  currentWeaponAmmo[weaponType];
+        if(totalWeaponAmmo[weaponType] >= needToReload)
+        {
+            currentWeaponAmmo[weaponType] = reloadWeaponAmmo[weaponType];
+            totalWeaponAmmo[weaponType] -= needToReload;
+
+        } else{
+            currentWeaponAmmo[weaponType] = totalWeaponAmmo[weaponType];
+            totalWeaponAmmo[weaponType] = 0;
+        }
+    }
+
+    public void collectAmmo(int amount, int Ammotype){
+        totalWeaponAmmo[Ammotype] += amount;
     }
 
 

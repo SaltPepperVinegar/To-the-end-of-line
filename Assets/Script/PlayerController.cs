@@ -55,8 +55,8 @@ public class PlayerController : MonoBehaviour
             
         if(weaponControl.weaponType <3){
             if (Input.GetKeyDown(KeyCode.R))
-            {   
-                animator.SetTrigger("ReloadTrigger");
+            {    
+                    animator.SetTrigger("ReloadTrigger");
             }   
             switch (weaponControl.weaponType){
                 case 0: 

@@ -23,14 +23,18 @@ public class ItemSO : ScriptableObject
                 playerHealth.Damage(-amountToChangeStat);
                 return true;
             }
-        }
+        } 
+        
         return false;
     }
     public enum StatToChange
     {
         none,
         health,
-        stamina
+        stamina,
+        riffleAmmo,
+        shotGunAmmo,
+        pistolAmmo,
     };
     public enum AttributesToChange
     {

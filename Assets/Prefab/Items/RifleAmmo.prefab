@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5829551056716365394
+--- !u!1 &2485082438556807093
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,57 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2362786303483813626}
-  - component: {fileID: 4468261901972564858}
-  - component: {fileID: 6100245127370342590}
+  - component: {fileID: 4560326488298565151}
+  - component: {fileID: 6203170932802086568}
+  - component: {fileID: 7332154507441567452}
   m_Layer: 0
-  m_Name: First Aid Kit
+  m_Name: RifleAmmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2362786303483813626
+--- !u!4 &4560326488298565151
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5829551056716365394}
+  m_GameObject: {fileID: 2485082438556807093}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -894.5181, y: -464.36444, z: 6.6452837}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.61, y: 0.20018323, z: -0.054349788}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 902303689362400050}
+  - {fileID: 2581072409281932958}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &4468261901972564858
+--- !u!114 &6203170932802086568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2485082438556807093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab9266d62d39c6740934f5f5ee93b22d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemName: RiffleAmmo
+  quantity: 30
+  sprite: {fileID: 21300000, guid: cf7bfce0f6552db44b874b48f9b8894d, type: 3}
+  itemDescription: 
+  maxNumberItems: 60
+  Ammotype: 0
+--- !u!61 &7332154507441567452
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5829551056716365394}
+  m_GameObject: {fileID: 2485082438556807093}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -66,7 +84,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.03, y: 0}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -77,30 +95,9 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.4, y: 1}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &6100245127370342590
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5829551056716365394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6127d36d07f5ca743aee18cdef93bf3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemName: First Aid Kit
-  quantity: 3
-  sprite: {fileID: 21300000, guid: 815f57b4bb65d6644bf6e6b36ad28968, type: 3}
-  itemDescription: "\"Because sometimes duct tape and a baseball bat just aren't
-    enough! Packed with essentials like gauze for your totally minor bite wounds,
-    anti-bite ointment, and enough bandages to patch up your best buddy after that
-    'friendly fire' incident. Plus, we've included a bonus mirror for checking if
-    your eyes have started glowing... or, you know, to make sure you still have a
-    pulse. Stay alive\u2014sort of!\""
---- !u!1 &6826449928007379740
+--- !u!1 &3879566089882970532
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,37 +105,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 902303689362400050}
-  - component: {fileID: 9086464678245370287}
+  - component: {fileID: 2581072409281932958}
+  - component: {fileID: 6664484252272262716}
   m_Layer: 0
-  m_Name: Medic
+  m_Name: ammo-rifle 32px
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &902303689362400050
+--- !u!4 &2581072409281932958
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6826449928007379740}
+  m_GameObject: {fileID: 3879566089882970532}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 2362786303483813626}
+  m_Father: {fileID: 4560326488298565151}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &9086464678245370287
+--- !u!212 &6664484252272262716
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6826449928007379740}
+  m_GameObject: {fileID: 3879566089882970532}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -173,12 +170,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 815f57b4bb65d6644bf6e6b36ad28968, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cf7bfce0f6552db44b874b48f9b8894d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 9.8, y: 9.8}
+  m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
