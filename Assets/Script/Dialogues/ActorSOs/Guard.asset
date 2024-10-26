@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7588a10c31522e3499c5f8c89b997aca, type: 3}
-  m_Name: Aiden
+  m_Name: Guard
   m_EditorClassIdentifier: 
-  actorName: 
-  actorPortrait: {fileID: 0}
+  actorName: Guard
+  actorPortrait: {fileID: 21300000, guid: f469598a1927f284f8fd3f57e6dfe47d, type: 3}

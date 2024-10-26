@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyChaseState : EnemyState
 {   
     private Transform _playerTransform;
-    private float _MovementSpeed  {get;set;}= 3f ;
+    private float _MovementSpeed  {get;set;}= 10f ;
     public EnemyChaseState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
     {
         _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
@@ -44,6 +44,6 @@ public class EnemyChaseState : EnemyState
 
         public override void PhysicsUpdate(){}
 
-        public override void AnimationTriggerEvent(Enemy.AnimationTriggerType triggerType){}
+    public override void AnimationTriggerEvent(Enemy.AnimationTriggerType triggerType){}
 
 }

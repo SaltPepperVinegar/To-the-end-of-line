@@ -22,8 +22,11 @@ public class HealthBar : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        transform.rotation = camera.transform.rotation;
-        transform.position = target.position+offset;
+    {   
+        if (camera != null){
+            transform.rotation = camera.transform.rotation;
+            transform.position = target.position+offset;
+
+        }
     }
 }

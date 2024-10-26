@@ -35,6 +35,9 @@ public class DialogueManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {   
+        dialogueCanvas = GameObject.Find("DialogueCanvas");
+
+
         optionsPanels = GameObject.Find("OptionsPanel");
         optionsPanels.SetActive(false);
 
@@ -46,7 +49,6 @@ public class DialogueManager : MonoBehaviour
         }
 
 
-        dialogueCanvas = GameObject.Find("DialogueCanvas");
         actor = GameObject.Find("ActorText").GetComponent<TMP_Text>();
         portrait = GameObject.Find("Portrait").GetComponent<Image>();
         dialogueText = GameObject.Find("DialogueText").GetComponent<TMP_Text>();
@@ -199,7 +201,7 @@ public class DialogueManager : MonoBehaviour
 
 public enum DialogueActors
 {
-    Aiden,
+    Guard,
     Charlie,
     Tom,
     Survivor,

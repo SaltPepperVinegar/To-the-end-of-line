@@ -13,6 +13,7 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
+        /*
         // Get tilemap bounds in world space
         Bounds tilemapBounds = tilemap.localBounds;
 
@@ -25,10 +26,12 @@ public class CameraController : MonoBehaviour
         maxX = tilemapBounds.max.x - camWidth / 2;
         minY = tilemapBounds.min.y + camHeight / 2;
         maxY = tilemapBounds.max.y - camHeight / 2;
+        */
     }
 
     void LateUpdate()
     {
+        /*
         Vector3 desiredPosition = player.position + offset;
 
         // Clamp the camera's position within the calculated boundary
@@ -40,5 +43,9 @@ public class CameraController : MonoBehaviour
         // Smoothly move the camera to the target position
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, clampedPosition, smoothSpeed);
         transform.position = smoothedPosition;
+        */
+        Vector3 position = new Vector3(player.position.x, player.position.y, -10);
+
+        transform.position = position;
     }
 }

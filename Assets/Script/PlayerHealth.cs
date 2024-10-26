@@ -13,10 +13,11 @@ public class PlayerHealth : MonoBehaviour,IDamageable
 
     [SerializeField] HealthBar healthbar;
 
+    private UIManager uiManager;
     private void Awake(){
         healthbar = GetComponentInChildren<HealthBar>();
         CurrentHealth = MaxHealth;
-
+        uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
     }
     void Start()
     {
@@ -46,6 +47,6 @@ public class PlayerHealth : MonoBehaviour,IDamageable
 
     public void Die()
     {
-        gameObject.SetActive(false);
+        uiManager.DeathScene();
     }
 }
