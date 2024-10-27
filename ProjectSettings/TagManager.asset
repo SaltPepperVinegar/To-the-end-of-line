@@ -40,6 +40,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: CollisionLayer
+    uniqueID: 3836567975
+    locked: 0
   - name: BackGround
     uniqueID: 4011484407
     locked: 0

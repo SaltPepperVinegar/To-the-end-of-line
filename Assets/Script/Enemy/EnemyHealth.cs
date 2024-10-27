@@ -24,7 +24,7 @@ public class EnemyHealth : MonoBehaviour,IDamageable
     public void Damage(float dmg) {
         CurrentHealth-=dmg;
         healthbar.UpdateHealthBar(CurrentHealth,MaxHealth);
-
+        gameObject.GetComponent<Enemy>().enraged();
         if (CurrentHealth<=0) {
             Die();
         }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +9,7 @@ public class Enemy : MonoBehaviour , IEnemyMoveable,ITriggerCheckable
     public Rigidbody2D RB { get; set;}   
 
     public EnemyStateMachine StateMachine {get;set;}
-    public EnemyState IdleState {get;set;}
+    public EnemyIdleState IdleState {get;set;}
     public EnemyState ChaseState {get;set;}
     public EnemyState AttackState {get;set;}
     public bool IsAggroed { get; set;}
@@ -23,6 +24,8 @@ public class Enemy : MonoBehaviour , IEnemyMoveable,ITriggerCheckable
 
     public bool isMoving;
 
+    private bool inAggroRange;
+    private bool isEnraged;
     private Animator animator;
     private void Awake(){
         StateMachine = new EnemyStateMachine();
@@ -48,6 +51,11 @@ public class Enemy : MonoBehaviour , IEnemyMoveable,ITriggerCheckable
             isMoving = false;
         } else{
             isMoving = true;
+        }
+        if (inAggroRange || isEnraged){
+            IsAggroed = true;
+        } else{
+            IsAggroed = false;
         }
         animator.SetBool("IsMoving",isMoving);
     }
@@ -96,6 +104,23 @@ public class Enemy : MonoBehaviour , IEnemyMoveable,ITriggerCheckable
             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>().Damage(1);
         }        
     }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(StateMachine.CurrentEnemyState == IdleState){
+            IdleState.HitsWall();
+            
+        }
+    }
+    public void InAggroRange(bool inAggroRange){
+        this.inAggroRange = inAggroRange;
+    }
 
-    
+    public void enraged(){
+        StartCoroutine(Enraged());
+    }
+    private IEnumerator Enraged(){
+        isEnraged = true;
+        yield return new WaitForSeconds(5f);
+        isEnraged = false;
+    }
 }

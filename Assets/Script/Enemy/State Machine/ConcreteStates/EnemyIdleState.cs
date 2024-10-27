@@ -63,9 +63,13 @@ public class EnemyIdleState : EnemyState
 
     public override void AnimationTriggerEvent(Enemy.AnimationTriggerType triggerType){}
 
-
     private Vector3 GetRandomPointInCircle()
     {   
         return enemy.transform.position + (Vector3)UnityEngine.Random.insideUnitCircle*enemy.RandomMovementRange;
     } 
+    public void HitsWall(){
+        _targetPos = GetRandomPointInCircle();
+        standingTimer = 1f;
+        isWalking = false;
+    }
 }

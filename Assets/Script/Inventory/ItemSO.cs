@@ -24,6 +24,15 @@ public class ItemSO : ScriptableObject
                 return true;
             }
         } 
+        if (statToChange == StatToChange.stealth){
+            PlayerStealth playerStealth = GameObject.Find("Player").GetComponent<PlayerStealth>();
+            if(!playerStealth.stealth){
+                playerStealth.setStealth(amountToChangeStat);
+                return true;
+            } else{
+                return false;
+            }
+        }
         
         return false;
     }
@@ -32,9 +41,7 @@ public class ItemSO : ScriptableObject
         none,
         health,
         stamina,
-        riffleAmmo,
-        shotGunAmmo,
-        pistolAmmo,
+        stealth,
     };
     public enum AttributesToChange
     {

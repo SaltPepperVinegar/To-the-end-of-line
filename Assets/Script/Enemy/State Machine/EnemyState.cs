@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 
-public class EnemyState 
+public class EnemyState
 {
         protected Enemy enemy;
         protected EnemyStateMachine enemyStateMachine;

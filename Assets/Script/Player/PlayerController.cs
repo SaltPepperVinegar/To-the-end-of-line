@@ -24,13 +24,20 @@ public class PlayerController : MonoBehaviour
 
     public GameObject muzzleFlash;
     private WeaponControl weaponControl;
+
+    private PlayerStealth playerStealth;
+    
+    private UIManager uIManager;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         animator.SetBool("IsMoving",isMoving);
+        playerStealth = GetComponent<PlayerStealth>();
         weaponControl = GetComponent<WeaponControl>();
         muzzleFlash.GetComponent<SpriteRenderer>().enabled =false;
+        uIManager = GameObject.Find("UIManager").GetComponent<UIManager>();
+
     }
     
     void Update()
@@ -53,7 +60,7 @@ public class PlayerController : MonoBehaviour
             isMoving = false;
         }
             
-        if(weaponControl.weaponType <3){
+        if(weaponControl.weaponType <3 && !uIManager.onUI){
             if (Input.GetKeyDown(KeyCode.R))
             {    
                     animator.SetTrigger("ReloadTrigger");
@@ -105,7 +112,7 @@ public class PlayerController : MonoBehaviour
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             weaponControl.bulletShooted(1);
             StartCoroutine(flash());
-
+            playerStealth.endStealthing();
         }
     }
     public void ShootRifle()
@@ -115,6 +122,7 @@ public class PlayerController : MonoBehaviour
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             weaponControl.bulletShooted(1);
             StartCoroutine(flash());
+            playerStealth.endStealthing();
 
         }
     }
@@ -139,12 +147,13 @@ public class PlayerController : MonoBehaviour
             // Register that a bullet has been shot
         }
         weaponControl.bulletShooted(1);
+        playerStealth.endStealthing();
 
     }
     }
     void Melee()
     {
-
+        playerStealth.endStealthing();
     }
     IEnumerator Move(Vector3 targetPos)
     {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 public class PlayerHealth : MonoBehaviour,IDamageable
 {    
@@ -12,8 +13,9 @@ public class PlayerHealth : MonoBehaviour,IDamageable
     public float CurrentHealth { get; set;}
 
     [SerializeField] HealthBar healthbar;
-
     private UIManager uiManager;
+
+    
     private void Awake(){
         healthbar = GetComponentInChildren<HealthBar>();
         CurrentHealth = MaxHealth;
@@ -49,4 +51,6 @@ public class PlayerHealth : MonoBehaviour,IDamageable
     {
         uiManager.DeathScene();
     }
+
+ 
 }
