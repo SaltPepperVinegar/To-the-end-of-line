@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed5c78615666e194d9f4098de083fc7d, type: 3}
+  m_Name: Intro
+  m_EditorClassIdentifier: 
+  actors: 030000000400000003000000040000000300000006000000
+  randomActorName: 
+  randomActorPortrait: {fileID: 0}
+  Dialogue:
+  - "Hey, hold up. The next road\u2019s packed with zombies\u2014more than I\u2019ve
+    seen in one place for days. It\u2019s a death trap if you go in guns blazing."
+  - "Look, I\u2019ve got enough ammo and a good shot. I say we take them out, clear
+    the path.\n\n"
+  - "*shakes head* That\u2019ll just bring more. Noise attracts them, and they\u2019re
+    already swarming. Fighting through could trap us both.\n\n"
+  - Then what do you suggest? Just sitting here?
+  - "Not sitting\u2014sneaking. We\u2019ve got stealth armor for a reason. We move
+    quiet, stay low, and slip right through. No mess, no attention."
+  optionText:
+  - "Alright, alright. We go your way. But if anything goes wrong, we\u2019re fighting
+    our way out."
+  - "*shrugs, gripping your weapon* It\u2019s kept me alive so far. I know it won\u2019t
+    let me down. "
+  option0: {fileID: 11400000, guid: 604c06a35bdb7da4bb68d3d115380cfd, type: 2}
+  option1: {fileID: 11400000, guid: 21a96f09c066df4409f56a2b3485f62d, type: 2}
+  option2: {fileID: 0}
+  option3: {fileID: 0}

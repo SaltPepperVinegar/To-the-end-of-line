@@ -15,6 +15,7 @@ public class EnemyAggroCheck : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //Debug.Log(!PlayerTarget.GetComponent<PlayerStealth>().stealth);
         if (collision.gameObject == PlayerTarget && !PlayerTarget.GetComponent<PlayerStealth>().stealth)
         {   
             _enemy.InAggroRange(true);

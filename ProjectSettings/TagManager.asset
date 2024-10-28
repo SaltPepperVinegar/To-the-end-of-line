@@ -52,11 +52,11 @@ TagManager:
   - name: ForeGround
     uniqueID: 3388567819
     locked: 0
-  - name: Player
-    uniqueID: 3969877039
-    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 3969877039
     locked: 0
   - name: New Layer 4
     uniqueID: 3926061367

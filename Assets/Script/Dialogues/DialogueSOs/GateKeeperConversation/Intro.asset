@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed5c78615666e194d9f4098de083fc7d, type: 3}
   m_Name: Intro
   m_EditorClassIdentifier: 
-  actors: 00000000030000000000000005000000
+  actors: 00000000040000000000000006000000
   randomActorName: 
   randomActorPortrait: {fileID: 0}
   Dialogue:

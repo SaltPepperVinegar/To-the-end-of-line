@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour
     private PlayerStealth playerStealth;
     
     private UIManager uIManager;
+
+    public AudioSource shootAudio;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -63,7 +65,7 @@ public class PlayerController : MonoBehaviour
         if(weaponControl.weaponType <3 && !uIManager.onUI){
             if (Input.GetKeyDown(KeyCode.R))
             {    
-                    animator.SetTrigger("ReloadTrigger");
+                animator.SetTrigger("ReloadTrigger");
             }   
             switch (weaponControl.weaponType){
                 case 0: 
@@ -108,7 +110,9 @@ public class PlayerController : MonoBehaviour
     public void ShootHandGun()
     {   
         if ( weaponControl.checkAmmunition())
-        {// Instantiate the bullet at the fire point position with the same rotation as the fire point
+        {// Instantiate the bullet at the fire point position with the same rotation as the fire point\
+            shootAudio.Stop();
+            shootAudio.Play();
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             weaponControl.bulletShooted(1);
             StartCoroutine(flash());
@@ -119,6 +123,9 @@ public class PlayerController : MonoBehaviour
     {
         if ( weaponControl.checkAmmunition())
         {// Instantiate the bullet at the fire point position with the same rotation as the fire point
+            shootAudio.Stop();
+            shootAudio.Play();
+
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             weaponControl.bulletShooted(1);
             StartCoroutine(flash());
@@ -130,6 +137,9 @@ public class PlayerController : MonoBehaviour
     {
     if (weaponControl.checkAmmunition())
     {
+        shootAudio.Stop();
+        shootAudio.Play();
+
         int bulletCount = 5; // Number of bullets in the spread
         float spreadAngle = 20f; // Total angle for the spread (e.g., 30 degrees)
         StartCoroutine(flash());

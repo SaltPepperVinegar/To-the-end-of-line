@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed5c78615666e194d9f4098de083fc7d, type: 3}
+  m_Name: Conversation1
+  m_EditorClassIdentifier: 
+  actors: 02000000040000000200000004000000020000000400000002000000040000000200000006000000
+  randomActorName: 
+  randomActorPortrait: {fileID: 0}
+  Dialogue:
+  - "You're lucky to be alive. I\u2019m Captain Reid. This world? It\u2019s not just
+    chaos\u2014it\u2019s hell on Earth. Zombies are everywhere, and the city's in
+    ruins."
+  - "I\u2019ve seen enough to believe it. What do you need from me?"
+  - "The train line\u2014it\u2019s our only shot at moving supplies and survivors.
+    But it\u2019s down. I need someone to reconnect it. That\u2019s where you come
+    in."
+  - "I\u2019m no expert, but I can try. What\u2019s the issue?"
+  - "Power\u2019s out, debris on the tracks, and the station\u2019s infested with
+    the dead. Clear it out, get the power back, and get the trains running."
+  - "How bad\u2019s the infestation?"
+  - "Bad enough that no one else made it back. You\u2019ll have to be fast and careful."
+  - "And if I don\u2019t make it?"
+  - "Then we lose the last lifeline we\u2019ve got. But if you succeed, you save
+    lives\u2014maybe even your own. So, you in?"
+  optionText:
+  - Sure
+  - No
+  - I'll think about it.
+  option0: {fileID: 11400000, guid: 6ebe84526ed7a2d44995bf0afda2018e, type: 2}
+  option1: {fileID: 11400000, guid: 4d98d2144faba0547b9f0f9f5637bc00, type: 2}
+  option2: {fileID: 11400000, guid: 1f75a26178d80864ab452b3cd7a74809, type: 2}
+  option3: {fileID: 0}

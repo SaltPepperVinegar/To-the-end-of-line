@@ -22,14 +22,13 @@ public class EnemyIdleState : EnemyState
 
     public override void ExitState()
     {
-
+        _targetPos = enemy.transform.position;
     }
 
     public override void FrameUpdate(){
-            
+
         if (enemy.IsAggroed)
         {   
-            
             enemyStateMachine.ChangeState(enemy.ChaseState);
         }
 
@@ -69,7 +68,7 @@ public class EnemyIdleState : EnemyState
     } 
     public void HitsWall(){
         _targetPos = GetRandomPointInCircle();
-        standingTimer = 1f;
+        standingTimer = 0f;
         isWalking = false;
     }
 }

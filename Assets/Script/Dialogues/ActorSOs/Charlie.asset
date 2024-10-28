@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Charlie
   m_EditorClassIdentifier: 
   actorName: 
-  actorPortrait: {fileID: 0}
+  actorPortrait: {fileID: 21300000, guid: 46525fd64644f1246a6e32ee88b224e7, type: 3}

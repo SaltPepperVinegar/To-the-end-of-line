@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed5c78615666e194d9f4098de083fc7d, type: 3}
+  m_Name: AllyConversationTest
+  m_EditorClassIdentifier: 
+  actors: 01000000040000000100000006000000
+  randomActorName: 
+  randomActorPortrait: {fileID: 0}
+  Dialogue:
+  - "Name's Charlie, eshay through and through. This crew? We don\u2019t just survive,
+    we run the streets. "
+  - Sounds fun.
+  - Yeah, it really does, You should be one of US.
+  optionText:
+  - Sure, why not, I am in!
+  - I'll think about that.
+  option0: {fileID: 11400000, guid: c9b89ee1961d6964493b6cefce03946b, type: 2}
+  option1: {fileID: 11400000, guid: 8c29b32f5ac34e242b6be5e52d67fb9b, type: 2}
+  option2: {fileID: 0}
+  option3: {fileID: 0}

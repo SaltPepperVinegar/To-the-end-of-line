@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 5032179204816087110}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.91, y: 0, z: -2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -127,6 +127,12 @@ MonoBehaviour:
   firePoint: {fileID: 4656537060516568166}
   unitMovement: 0.1
   isMoving: 0
+  solidObjectsLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  healthbar: {fileID: 0}
+  muzzleFlash: {fileID: 0}
+  shootAudio: {fileID: 0}
 --- !u!114 &5316297497344686774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,6 +148,10 @@ MonoBehaviour:
   weaponType: 0
   maxWeaponType: 4
   minWeaponType: 0
+  AmmoStates: {fileID: 0}
+  reloadAudio: {fileID: 0}
+  reloadWeaponAmmo: 
+  totalWeaponAmmo: 
 --- !u!50 &7304101292206611286
 Rigidbody2D:
   serializedVersion: 4

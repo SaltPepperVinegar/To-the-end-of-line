@@ -18,6 +18,7 @@ public class DialogueSO : ScriptableObject
     [Tooltip("The words that will appear on option buttons")]
     public string[] optionText;
 
+
     public DialogueSO option0;
     public DialogueSO option1;
     public DialogueSO option2;

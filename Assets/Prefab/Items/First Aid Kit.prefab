@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: First Aid Kit
-  quantity: 3
+  quantity: 1
   sprite: {fileID: 21300000, guid: 815f57b4bb65d6644bf6e6b36ad28968, type: 3}
   itemDescription: "\"Because sometimes duct tape and a baseball bat just aren't
     enough! Packed with essentials like gauze for your totally minor bite wounds,
@@ -100,7 +100,7 @@ MonoBehaviour:
     'friendly fire' incident. Plus, we've included a bonus mirror for checking if
     your eyes have started glowing... or, you know, to make sure you still have a
     pulse. Stay alive\u2014sort of!\""
-  maxNumberItems: 10
+  maxNumberItems: 5
 --- !u!1 &6826449928007379740
 GameObject:
   m_ObjectHideFlags: 0

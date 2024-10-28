@@ -11,6 +11,7 @@ public class WeaponControl : MonoBehaviour
     public int minWeaponType = 0; // Minimum weapon type
 
     [SerializeField] private TextMeshProUGUI AmmoStates;
+    public AudioSource reloadAudio;
 
     public int[] reloadWeaponAmmo;
 
@@ -107,6 +108,11 @@ public class WeaponControl : MonoBehaviour
         }
     }
 
+    public void reloadSound()
+    {
+        reloadAudio.Stop();
+        reloadAudio.Play();
+    }
     public void collectAmmo(int amount, int Ammotype){
         totalWeaponAmmo[Ammotype] += amount;
     }

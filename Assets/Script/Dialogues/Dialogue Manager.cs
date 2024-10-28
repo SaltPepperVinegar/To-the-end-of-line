@@ -11,7 +11,7 @@ public class DialogueManager : MonoBehaviour
     private DialogueSO currentConversation;
     private int stepNum;
 
-    private bool dialogueActivated;
+    public bool dialogueActivated;
 
     private GameObject dialogueCanvas;
     private TMP_Text actor;
@@ -33,6 +33,8 @@ public class DialogueManager : MonoBehaviour
     private bool canContinueText =true;
     private bool isSkipping = false;
     // Start is called before the first frame update
+    private NPC currentNPC;
+    private NPCDialogue currentNPCDialogue;
     void Start()
     {   
         dialogueCanvas = GameObject.Find("DialogueCanvas");
@@ -65,7 +67,10 @@ public class DialogueManager : MonoBehaviour
             if (canContinueText)
             {
                 if(stepNum >= currentConversation.actors.Length)
+                {
+                    Debug.Log("out of range convesation so off");
                     TurnOffDialogue();
+                }
                 else 
                 {
                     PlayDialogue();
@@ -146,15 +151,22 @@ public class DialogueManager : MonoBehaviour
         switch (optionNum){
             case 0:
                 currentConversation = currentConversation.option0;
+                currentNPC.notifyDialogueOutcome(0);
                 break;
             case 1:
                 currentConversation = currentConversation.option1;
+                currentNPC.notifyDialogueOutcome(1);
+
                 break;
             case 2:
                 currentConversation = currentConversation.option2;
+                currentNPC.notifyDialogueOutcome(2);
+
                 break;
             case 3:
                 currentConversation = currentConversation.option3;
+                currentNPC.notifyDialogueOutcome(3);
+
                 break;
         
         }
@@ -183,18 +195,31 @@ public class DialogueManager : MonoBehaviour
     canContinueText = true;
 
     }
-    public void initiateDialogue(NPCDialogue npcDialogue)
-    {   
+    public void initiateDialogue(NPCDialogue npcDialogue, NPC nPC)
+    {      
+        currentNPC = nPC;
+        currentNPCDialogue = npcDialogue;
         currentConversation = npcDialogue.conversations[0];
+        Debug.Log("dialog turned on");
+
         dialogueActivated = true;
     }
 
     public void TurnOffDialogue()
-    {
+    {   
+        //Debug.Log("dialog turned off");
+
         stepNum = 0;
         dialogueActivated = false;
         optionsPanels.SetActive(false);
         dialogueCanvas.SetActive(false);
+        currentNPC = null;
+        if(currentNPCDialogue != null){
+            currentNPCDialogue.dialogueTurnedOff();
+        }
+        currentNPCDialogue = null;
+
+
     }
 }
 
@@ -204,6 +229,7 @@ public enum DialogueActors
     Guard,
     Charlie,
     Tom,
+    Nick,
     Survivor,
     Random,
     Branch,
