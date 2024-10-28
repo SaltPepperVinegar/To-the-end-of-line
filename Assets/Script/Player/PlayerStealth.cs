@@ -13,6 +13,7 @@ public class PlayerStealth : MonoBehaviour
     void Start(){
         renderer = GetComponent<SpriteRenderer>();
         originalColor = renderer.color;
+        
     }
    public bool setStealth(float duration){
         if(!stealth){

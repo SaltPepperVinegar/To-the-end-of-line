@@ -481,7 +481,9 @@ MonoBehaviour:
   - {fileID: 9188967370863450685}
   itemSOs:
   - {fileID: 11400000, guid: ed94749d6a8b97944b13620f48ac6730, type: 2}
+  - {fileID: 11400000, guid: d448e937e8e3534428b98aa4c3ef34af, type: 2}
   itemInstances:
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -1711,6 +1713,10 @@ PrefabInstance:
     - target: {fileID: 8317387524349891522, guid: 37cb4bdc549a76d4eb302d49f108e0c4, type: 3}
       propertyPath: m_Name
       value: ItemSlot
+      objectReference: {fileID: 0}
+    - target: {fileID: 8348712341964541769, guid: 37cb4bdc549a76d4eb302d49f108e0c4, type: 3}
+      propertyPath: itemName
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8348712341964541769, guid: 37cb4bdc549a76d4eb302d49f108e0c4, type: 3}
       propertyPath: uniqueItem

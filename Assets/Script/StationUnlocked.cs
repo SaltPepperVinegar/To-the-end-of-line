@@ -30,7 +30,7 @@ public class StationUnlocked : MonoBehaviour
         AnnoucementText.text = stationName + " Station Unlocked!";
         yield return new WaitForSeconds(3f);
         AnnoucementCanvas.SetActive(false);
-
+        unlocked = true;
     }
 
 }

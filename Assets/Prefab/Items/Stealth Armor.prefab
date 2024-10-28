@@ -49,9 +49,10 @@ MonoBehaviour:
   itemName: Stealth Armor
   quantity: 1
   sprite: {fileID: 21300000, guid: 6cce4dabfd59b1446b69d89d183380ca, type: 3}
-  itemDescription: 'Lets you have 3 minutes of Stealth Time
-
-'
+  itemDescription: "The stealth suit is survival\u2019s answer to a ninja costume\u2014dark,
+    padded, and pocketed for \"essentials,\" though half the pockets make you sound
+    like a maraca if filled. It\u2019s designed for silence but mostly makes you
+    look like a stealthy trash bag in low light.\n\nKeep Player Stealth for a minute"
   maxNumberItems: 5
 --- !u!61 &1942207568405977525
 BoxCollider2D:
@@ -169,7 +170,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -906399477
-  m_SortingLayer: -2
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6cce4dabfd59b1446b69d89d183380ca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

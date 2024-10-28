@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
 
     [SerializeField] HealthBar healthbar;
-
+    public GameObject player;
     private Vector3 targetPos;
 
     public GameObject muzzleFlash;

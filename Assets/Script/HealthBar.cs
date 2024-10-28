@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     [SerializeField] private Slider slider;
-    [SerializeField] private Camera camera;
+    private Camera camera;
     [SerializeField] private Transform target;
     [SerializeField] private Vector3 offset;
 
@@ -17,7 +17,7 @@ public class HealthBar : MonoBehaviour
 
     void Start()
     {
-        
+        camera = Camera.main;
     }
 
     // Update is called once per frame

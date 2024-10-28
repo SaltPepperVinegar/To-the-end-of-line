@@ -17,7 +17,7 @@ public class WeaponControl : MonoBehaviour
 
     public int[] totalWeaponAmmo;
     private int[] currentWeaponAmmo;  
-
+    public GameObject player;
     private Animator animator;
     private InventoryManager inventoryManager;
     private void Start(){
